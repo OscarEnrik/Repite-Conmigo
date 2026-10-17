@@ -1,28 +1,29 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://ntb44btshb7"]
 
-[ext_resource type="Script" path="res://scenes/levels/day_scene.gd" id="1_day"]
+[ext_resource type="Script" uid="uid://b4q521oq1hq7r" path="res://scenes/levels/day_scene.gd" id="1_day"]
+[ext_resource type="PackedScene" path="res://scenes/levels/day_stage.tscn" id="2_q4y5m"]
 
-[node name="Day07" type="Node2D"]
+[node name="Day07" type="Node2D" unique_id=359427612]
 script = ExtResource("1_day")
 day_index = 6
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=198114823]
 layer = 0
 
-[node name="Background" type="ColorRect" parent="UI"]
+[node name="Background" type="ColorRect" parent="UI" unique_id=1889356063]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.19, 0.12, 0.14, 1)
 
-[node name="IntroCard" type="PanelContainer" parent="UI"]
+[node name="Stage" parent="UI" unique_id=280788395 instance=ExtResource("2_q4y5m")]
+unique_name_in_owner = true
+layout_mode = 3
+
+[node name="IntroCard" type="PanelContainer" parent="UI" unique_id=137192689]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
@@ -31,28 +32,27 @@ offset_top = 288.0
 offset_right = -72.0
 offset_bottom = 732.0
 grow_horizontal = 2
-grow_vertical = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=784312076]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=846173700]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Día 7 · Domingo"
 horizontal_alignment = 1
 
-[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=361439678]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 text = "Se despertó a las 4 AM con la sensación de que el lunes ya empezó."
 horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer" unique_id=1149259557]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2

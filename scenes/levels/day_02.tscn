@@ -1,28 +1,29 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://cbwu7fx0avp8o"]
 
-[ext_resource type="Script" path="res://scenes/levels/day_scene.gd" id="1_day"]
+[ext_resource type="Script" uid="uid://b4q521oq1hq7r" path="res://scenes/levels/day_scene.gd" id="1_day"]
+[ext_resource type="PackedScene" path="res://scenes/levels/day_stage.tscn" id="2_mls2g"]
 
-[node name="Day02" type="Node2D"]
+[node name="Day02" type="Node2D" unique_id=46309359]
 script = ExtResource("1_day")
 day_index = 1
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=125327831]
 layer = 0
 
-[node name="Background" type="ColorRect" parent="UI"]
+[node name="Background" type="ColorRect" parent="UI" unique_id=810866606]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.14, 0.15, 0.19, 1)
 
-[node name="IntroCard" type="PanelContainer" parent="UI"]
+[node name="Stage" parent="UI" unique_id=1214075651 instance=ExtResource("2_mls2g")]
+unique_name_in_owner = true
+layout_mode = 3
+
+[node name="IntroCard" type="PanelContainer" parent="UI" unique_id=1353141846]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
@@ -31,28 +32,27 @@ offset_top = 288.0
 offset_right = -72.0
 offset_bottom = 732.0
 grow_horizontal = 2
-grow_vertical = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=1139411189]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=1965757387]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Día 2 · Martes"
 horizontal_alignment = 1
 
-[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=976578746]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 text = "Le llegó una multa por algo que no hizo. Y se le cayó el café al ir a pagarla."
 horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer" unique_id=1704392985]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2

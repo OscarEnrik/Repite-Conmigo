@@ -7,7 +7,7 @@ extends RefCounted
 ##     if days.day_count() == 0:
 ##         push_error("no se pudo cargar el guion")
 ##
-## El archivo define 7 días. Cada día trae una intro de Richard y
+## El archivo define los 4 días de la semana. Cada día trae una intro de Richard y
 ## `EXPECTED_TURNS` turnos, y cada turno `EXPECTED_OPTIONS` opciones con la forma
 ## `{ "text": String, "kind": "choke" | "motivate" | "sound", "mood": int }`.
 ##
@@ -25,7 +25,7 @@ extends RefCounted
 const DATA_PATH := "res://assets/data/days.json"
 
 ## Forma esperada. Si el contenido no la cumple, `_validate()` avisa.
-const EXPECTED_DAYS := 7
+const EXPECTED_DAYS := 4
 const EXPECTED_TURNS := 2
 const EXPECTED_OPTIONS := 3
 

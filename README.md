@@ -35,7 +35,7 @@ permite inspeccionarlo o manejarlo en vivo. Detalles y trampas en `AGENTS.md`.
 
 ```
 assets/
-  data/days.json         Guion de la semana: 7 días × 2 turnos × 3 opciones
+  data/days.json         Guion de la semana: 4 días × 2 turnos × 3 opciones
   art/, audio/           Vacías por ahora (.gitkeep)
 docs/
   ARCHITECTURE.md        Cómo funciona todo + recetario "quiero cambiar X" (para el equipo)
@@ -73,7 +73,7 @@ boot.tscn ──► main_menu.tscn ──(Nueva partida)──► Game.start_run
                                  │
    "Día superado" / "Se acumula la tristeza" ──"Seguir"──► Game.next_day()
                                  │
-                        (domingo) Game.finish_week() ──► ending.tscn
+                                                 (jueves) Game.finish_week() ──► ending.tscn
 ```
 
 Quién decide qué día toca es `Game`; `Main` solo instancia la escena que le pide la señal

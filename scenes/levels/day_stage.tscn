@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/day_stage.gd" id="1_stage"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(180, 360)
+
+[node name="Stage" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_stage")
+
+[node name="Walker" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(960, 380)
+
+[node name="PlaceholderVisual" type="Node2D" parent="Walker"]
+
+[node name="Body" type="Polygon2D" parent="Walker/PlaceholderVisual"]
+color = Color(0.62, 0.6, 0.7, 1)
+polygon = PackedVector2Array(-90, -90, 90, -90, 90, 170, -90, 170)
+
+[node name="Head" type="Polygon2D" parent="Walker/PlaceholderVisual"]
+color = Color(0.78, 0.76, 0.84, 1)
+polygon = PackedVector2Array(-50, -180, 50, -180, 50, -80, -50, -80)
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Walker"]
+unique_name_in_owner = true
+
+[node name="HitArea" type="Area2D" parent="Walker"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walker/HitArea"]
+shape = SubResource("RectangleShape2D_hit")
+
+[node name="HintLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -170.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Hacé clic en Richard"
+horizontal_alignment = 1

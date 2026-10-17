@@ -31,8 +31,8 @@ enum State {
 	ENDING,      ## pantalla de final de semana
 }
 
-## Días de la semana (Lunes a Domingo).
-const DAY_COUNT := 7
+## Días de la semana (Lunes a Jueves).
+const DAY_COUNT := 4
 ## Oportunidades de Loretta por día.
 const TURNS_PER_DAY := 2
 const MOOD_MIN := 0
@@ -240,7 +240,7 @@ func finish_day() -> bool:
 	return passed
 
 
-## Avanza al día siguiente, o cierra la semana si era el domingo.
+## Avanza al día siguiente, o cierra la semana si era el último (el jueves).
 func next_day() -> void:
 	if current_day + 1 >= DAY_COUNT:
 		finish_week()

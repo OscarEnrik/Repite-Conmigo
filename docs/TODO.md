@@ -9,13 +9,13 @@
 - [x] Recursos de datos: `DialogueDB` (lee `assets/data/days.json`) y `GameData` (guardado)
 - [x] Tema global en `resources/themes/main_theme.tres`
 - [x] Mapa de entrada mínimo: `ui_accept` (built-in) y `pause`
-- [x] Flujo menú → semana de 7 días → final, con fundido
+- [x] Flujo menú → semana de 4 días → final, con fundido
 - [x] Guardado y ajustes en `user://`
 - [x] Documentación: `README.md`, `docs/GDD.md`, `docs/CREDITS.md`, `docs/IMPLEMENTATION_PLAN.md`
 
 ## Prototipo jugable (MVP)
 
-- [x] Semana completa lunes → domingo de principio a fin
+- [x] Semana completa lunes → jueves de principio a fin
 - [x] Sistema de diálogo: 2 turnos por día, 3 salidas por turno
 - [x] Barra de ánimo 0..100 con dificultad creciente por día
 - [x] 3 finales según el promedio de la semana

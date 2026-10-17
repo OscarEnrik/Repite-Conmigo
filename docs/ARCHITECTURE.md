@@ -129,7 +129,7 @@ enum State {
 |---|---|
 | `days` | el guion ya cargado (`DialogueDB`) |
 | `mood` | ánimo actual, 0..100 |
-| `current_day` | 0 = Lunes … 6 = Domingo |
+| `current_day` | 0 = Lunes … 3 = Jueves |
 | `current_turn` | 0 o 1 |
 | `history` | ánimo al cierre de cada día jugado. **Su promedio decide el final** |
 | `days_passed` | cuántos días llegaron al umbral |
@@ -186,9 +186,9 @@ func _evaluate_ending():
     return &"ending_gloomy"
 ```
 
-`difficulty_scale` usa `current_day`, así que el Lunes no tiene castigo y el Domingo es el más
+`difficulty_scale` usa `current_day`, así que el Lunes no tiene castigo y el Jueves es el más
 duro. Es la razón de que, con **las mismas buenas elecciones**, se cierre en ~69 el lunes y en
-~60 el domingo.
+~64 el jueves.
 
 ---
 
@@ -268,7 +268,7 @@ jugado.
 Carga y **valida** el archivo:
 
 - `DATA_PATH = "res://assets/data/days.json"`
-- `EXPECTED_DAYS = 7`, `EXPECTED_TURNS = 2`, `EXPECTED_OPTIONS = 3`
+- `EXPECTED_DAYS = 4`, `EXPECTED_TURNS = 2`, `EXPECTED_OPTIONS = 3`
 - `VALID_KINDS = [&"choke", &"motivate", &"sound"]` — cada turno debe tener **exactamente uno
   de cada**, sin repetir
 - Los accesos **nunca devuelven `null`**: si pedís un día/turno/opción inexistente te da `{}`
@@ -293,7 +293,8 @@ Game.days.option_at(0, 1, 2)   # { text, kind, mood }
 | `boot/boot.tscn` | — | splash + precarga + salto al menú | `%StatusLabel` |
 | `ui/main_menu.tscn` | — | menú principal | `%NewGameButton`, `%ContinueButton`, `%SettingsButton`, `%QuitButton` |
 | `main.tscn` | — | **host persistente** | `%LevelHost`, `%HUD`, `%DialogueBox`, `%PauseMenu` |
-| `levels/day_01..07.tscn` | `UI` = 0 | la tarjeta de contexto del día | `%IntroCard`, `%DayTitleLabel`, `%IntroLabel`, `%ContinueButton` |
+| `levels/day_01..07.tscn` | `UI` = 0 | el escenario del día + la tarjeta de contexto | `%Stage`, `%IntroCard`, `%DayTitleLabel`, `%IntroLabel`, `%ContinueButton` |
+| `levels/day_stage.tscn` | dentro de `UI` | el escenario de espera: Richard deambula y se clickea | `%Walker`, `%AnimatedSprite`, `%HitArea`, `%HintLabel` |
 | `ui/dialogue_box.tscn` | **5** | prompt + 3 opciones + resultado | `%DialoguePanel`, `%PromptLabel`, `%OptionsContainer`, `%FeedbackLabel`, `%DayResultPanel`, `%ResultLabel`, `%ResultButton` |
 | `ui/hud.tscn` | **1** (default) | día + barra de ánimo | `%DayLabel`, `%MoodValueLabel`, `%MoodBar` |
 | `ui/pause_menu.tscn` | **10** | pausa | `%ResumeButton`, `%RestartButton`, `%MenuButton` |
@@ -306,6 +307,11 @@ Game.days.option_at(0, 1, 2)   # { text, kind, mood }
 > un `Node2D` se mide contra un rectángulo de 0×0 y queda invisible o mal centrado. Por eso los
 > días son `Node2D` → `CanvasLayer` llamado `UI` → Controls. **Si agregás UI a un día, metela
 > adentro de `UI`.**
+>
+> **El orden entre hermanos de `UI` también importa:** se dibujan en orden, así que el escenario
+> (`day_stage.tscn`) va **después** del `Background` y **antes** de la `IntroCard`, para que
+> Richard quede detrás de la tarjeta. El script del día la esconde en `_ready()`: el día arranca
+> con el escenario solo y la tarjeta aparece recién cuando clickeás a Richard.
 
 ---
 
@@ -323,9 +329,19 @@ Game.start_day(2)
         └─► HUD._on_day_started   →  "Día 3/7 · Miércoles" + repinta la barra
 
 DayScene._ready()
+  ├─ esconde la %IntroCard y conecta %Stage.clicked   ← el día arranca con el escenario
   ├─ Game.days.get_day(day_index) → pinta título + richard_intro en %IntroCard
   ├─ %ContinueButton.pressed ──► Game.begin_dialog()
   └─ Events.dialogue_turn_started.connect(...)  →  esconde la IntroCard
+
+DayStage._process()   (mientras nadie clickeó: Richard deambula solo, sin leer input)
+  └─ elige un punto al azar dentro de roam_rect → camina → espera → otro punto
+
+El jugador hace clic en Richard   (%HitArea → señal clicked)
+  └─► DayScene._reveal_card()
+        ├─ Stage.stop()                  Richard se congela donde está y la pista desaparece
+        ├─ %IntroCard.visible = true
+        └─ %ContinueButton.grab_focus()
 
 Game.begin_dialog()   (solo si state == INTRO)
   ├─ state = DIALOGUE
@@ -418,8 +434,9 @@ con `EVAL_GAME_NOT_READY`. Se recupera con `project_manage op="stop"` y después
 
 1. **Lienzo de 1920×1080, layout apretado.** Presupuesto real (medido en el juego): el HUD ocupa
    `0..262`, la tarjeta del día `288..732` (alto **fijo**) y el panel de diálogo `450..1080`.
-   Tarjeta y panel se solapan a propósito y nunca se ven juntos (la tarjeta se esconde al empezar
-   el diálogo). Si metés algo nuevo, respetá esas franjas o vas a superponer.
+   Tarjeta y panel se solapan a propósito y nunca se ven juntos (la tarjeta aparece recién al
+   clickear a Richard y se esconde al empezar el diálogo). Si metés algo nuevo, respetá esas
+   franjas o vas a superponer.
 2. **`%Nombre` solo funciona si el nodo tiene `unique_name_in_owner`.** Si agregás un nodo que tu
    código necesita, marcalo en el editor o usá `$Path`.
 3. **Nunca `class_name` que choque con un autoload** (`Game`, `Events`, `Audio`, `Save`,
@@ -440,6 +457,11 @@ con `EVAL_GAME_NOT_READY`. Se recupera con `project_manage op="stop"` y después
     por completo. Si lo ves en un tutorial, no aplica a este proyecto.
 11. **`DialogueDB` exige "uno de cada kind, sin repetir".** Si agregás opciones o tipos, leé la
     receta C2: hay que ajustar la validación o el log te va a llenar de errores.
+12. **El clic sobre Richard vive del *picking* del viewport.** `Area2D.input_event` solo llega si el
+    viewport tiene `physics_object_picking = true` (viene **apagado** por defecto; lo prende
+    `day_stage.gd` en `_ready()`). Y si inyectás clics desde un `game_eval`, pasá
+    `get_viewport().push_input(evento, true)`: con `local_coords = false` Godot reescala la
+    coordenada (ventana 1280×720 sobre lienzo 1920×1080) y el clic cae en otro lado.
 
 ---
 
@@ -476,9 +498,6 @@ Tocar solo las de validación **no cambia el juego**: solo hace que el log te av
 | 2 Martes | 29 | 31 | 32 | 33 | 34 | 37 | **39-41** | 45 | **47-49** |
 | 3 Miércoles | 54 | 56 | 57 | 58 | 59 | 62 | **64-66** | 70 | **72-74** |
 | 4 Jueves | 79 | 81 | 82 | 83 | 84 | 87 | **89-91** | 95 | **97-99** |
-| 5 Viernes | 104 | 106 | 107 | 108 | 109 | 112 | **114-116** | 120 | **122-124** |
-| 6 Sábado | 129 | 131 | 132 | 133 | 134 | 137 | **139-141** | 145 | **147-149** |
-| 7 Domingo | 154 | 156 | 157 | 158 | 159 | 162 | **164-166** | 170 | **172-174** |
 
 - **Cambiar una frase** → pisá la línea. La forma de una opción es
   `{ "text": "«Tu frase.»", "kind": "choke", "mood": -12 }`
@@ -495,9 +514,10 @@ Tocar solo las de validación **no cambia el juego**: solo hace que el log te av
 | Qué | Archivo:línea | Texto actual |
 |---|---|---|
 | Título del menú | `scenes/ui/main_menu.tscn:39` | `text = "Repite Conmigo"` |
-| Subtítulo | `scenes/ui/main_menu.tscn:44` | `text = "Siete días para levantarle el ánimo."` |
+| Subtítulo | `scenes/ui/main_menu.tscn:44` | `text = "Cuatro días para levantarle el ánimo."` |
 | Botones del menú | `main_menu.tscn:56, 62, 68, 74` | Nueva partida / Continuar / Opciones / Salir |
-| Botón de la intro de cada día | `scenes/levels/day_01.tscn:60` … `day_07.tscn` | `text = "Continuar"` |
+| Botón de la intro de cada día | `scenes/levels/day_01.tscn:59` … `day_04.tscn` | `text = "Continuar"` |
+| Pista del escenario del día | `scenes/levels/day_stage.tscn:50` | `text = "Hacé clic en Richard"` |
 | Resultado del día | `scenes/ui/dialogue_box.gd:97` | `"Día superado"` / `"Se acumula la tristeza"` |
 | Botón del resultado | `scenes/ui/dialogue_box.tscn:83` | `text = "Seguir"` |
 | Formato del feedback | `scenes/ui/dialogue_box.gd:87` | `"%s  %s" % [delta, emoji]` |
@@ -649,24 +669,24 @@ repetidos) y **194-196** (el de "falta un kind") de `dialogue_db.gd`.
 
 > `apply_mood` y `choose_option` no necesitan cambios: trabajan por índice.
 
-### C3. Agregar un día (semana de 8)
+### C3. Agregar un día (semana de 5)
 
 1. `days.json`: copiá el bloque de 25 líneas del Lunes (**4-28**) y pegalo antes del `]` de la
-   línea **180**, cambiando `"day"` y el contenido
-2. `game_manager.gd:35` → `const DAY_COUNT := 7` a `8`
-3. `dialogue_db.gd:28` → `const EXPECTED_DAYS := 7` a `8`
-4. `scenes/levels/day_08.tscn`: copiá `day_01.tscn`. Adentro, la línea **5** es
-   `[node name="Day01" type="Node2D"]` → `Day08`, y la línea **7** `day_index = 0` → `7`
+   línea **103**, cambiando `"day"` y el contenido
+2. `game_manager.gd:35` → `const DAY_COUNT := 4` a `5`
+3. `dialogue_db.gd:28` → `const EXPECTED_DAYS := 4` a `5`
+4. `scenes/levels/day_05.tscn`: copiá `day_01.tscn`. Adentro, la línea **5** es
+   `[node name="Day01" type="Node2D"]` → `Day05`, y la línea **7** `day_index = 0` → `4`
 5. *(Opcional)* `scenes/boot/boot.gd:10-15` → `PRELOAD_SCENES`: agregá
-   `"res://scenes/levels/day_08.tscn"`
+   `"res://scenes/levels/day_05.tscn"`
 
 **Lo demás se adapta solo:** `main.gd:31` arma el nombre con `%02d` (`day_%02d.tscn`), y el HUD
 (`hud.gd:36`) y el final (`ending.gd:29`) usan `Game.DAY_COUNT`.
 
-### C4. Quitar un día (semana de 6)
+### C4. Quitar un día (semana de 3)
 
-Al revés: `DAY_COUNT` a 6, `EXPECTED_DAYS` a 6, y **borrá el último bloque** del JSON (o el que
-quieras, pero reordená `"day"`). El `day_07.tscn` podés dejarlo (nadie lo carga) o borrarlo.
+Al revés: `DAY_COUNT` a 3, `EXPECTED_DAYS` a 3, y **borrá el último bloque** del JSON (o el que
+quieras, pero reordená `"day"`). El `day_04.tscn` podés dejarlo (nadie lo carga) o borrarlo.
 
 ### C5. Agregar un tipo de respuesta nuevo
 
@@ -770,6 +790,26 @@ Panel de resultado: líneas **59-62** del mismo archivo (`180 / 216 / -180 / -21
 
 > **Trampa real que ya nos mordió:** acá el alto es fijo **a propósito**. Si lo dejás crecer con el
 > contenido, a 1920×1080 se come el panel de diálogo.
+
+### E5. Ajustar a Richard que deambula → `scenes/levels/day_stage.gd`
+
+Todo el movimiento es código y se toca desde el inspector de `day_stage.tscn` (son `@export`):
+
+| Qué | Export | Default |
+|---|---|---|
+| Banda por la que camina (lienzo 1920×1080) | `roam_rect` | `Rect2(160, 140, 1600, 480)` |
+| Mitad del ancho/alto del personaje | `half_extents` | `(90, 180)` |
+| Velocidad | `speed` | `220` px/s |
+| Pausa entre destinos | `idle_time_range` | `0.4 … 1.2` s |
+| Semilla (dos corridas iguales) | `rng_seed` | `20261017` |
+| Nombres de animación | `idle_animation`, `walk_animation` | `idle`, `walk` |
+
+- Los frames van en `%AnimatedSprite` (`AnimatedSprite2D`): cargale un `SpriteFrames` con las
+  animaciones `idle` y `walk` y listo. Mientras no haya frames se ve el `PlaceholderVisual` (dos
+  `Polygon2D`), que se puede borrar sin tocar código.
+- El hitbox es `%HitArea` (`Area2D`) + su `CollisionShape2D` (`day_stage.tscn:6`, `180×360`); es
+  independiente de `half_extents`, que solo mantiene el dibujo dentro de la banda.
+- La pista de abajo es `%HintLabel` (`day_stage.tscn:50`) y desaparece sola con `Stage.stop()`.
 
 ---
 
@@ -913,12 +953,15 @@ conexiones al lado de esas.
 |---|---|
 | Texto / opciones | `game_eval` → `return Game.days.option_at(0,0,1).text` |
 | Umbrales del final | `return Game.ENDING_BRIGHT_MIN` |
-| Dificultad | `Game.current_day = 6` y después `return Game.difficulty_scale(-12)` |
+| Dificultad | `Game.current_day = 3` y después `return Game.difficulty_scale(-12)` |
 | N° de turnos | `return Game.TURNS_PER_DAY` y `Game.days.get_day(0)["turns"].size()` |
 | N° de opciones | `return (get_node("/root/Main/DialogueBox").get_node("%OptionsContainer") as Node).get_child_count()` |
 | Días de la semana | `return Game.DAY_COUNT` y `Game.days.day_count()` |
 | JSON bien formado | `return Game.days.day_count()` → si da 0, el JSON está roto (mirá los logs) |
 | Guardado | `return Save.load_game()` |
+| Arranque del día con la tarjeta oculta | `return get_node("/root/Main/LevelHost").get_child(0).get_node("%IntroCard").visible` → `false` |
+| Que Richard se mueva solo | `game_eval`: guardá `%Walker.position`, esperá ~40 `process_frame` y compará |
+| El clic que revela la tarjeta | `push_input(clic, true)` sobre `%Walker.global_position` y mirá `%IntroCard.visible` |
 | Tu señal nueva | Conectala y disparala a mano desde un `game_eval` |
 
 Siempre, después de tocar algo: `project_run` debe dar `status: "live"` / `ready: true`, y
@@ -933,7 +976,7 @@ constante o la función (no la línea) y siempre caés en el lugar correcto.
 
 ```
 assets/
-  data/days.json            Guion de la semana (7 días × 2 turnos × 3 opciones) ← acá va el texto
+  data/days.json            Guion de la semana (4 días × 2 turnos × 3 opciones) ← acá va el texto
   art/, audio/              Vacías por ahora (.gitkeep)
 docs/
   ARCHITECTURE.md           Este documento
@@ -946,8 +989,9 @@ scenes/
   boot/boot.tscn            Main scene: splash + precarga + salto al menú
   main.tscn                 Host persistente: LevelHost + HUD + DialogueBox + PauseMenu
   main.gd                   Carga el día que pide day_started; muestra/oculta la pausa
-  levels/day_scene.gd       Script compartido por los 7 días
-  levels/day_01..07.tscn    Un día cada uno (Node2D → CanvasLayer "UI")
+  levels/day_scene.gd       Script compartido por los 4 días (escenario → tarjeta → diálogo)
+  levels/day_stage.tscn|gd  Escenario de espera: Richard deambula y se clickea
+  levels/day_01..04.tscn    Un día cada uno (Node2D → CanvasLayer "UI", con el Stage adentro)
   ui/main_menu.tscn|gd      Menú principal
   ui/hud.tscn|gd            Día + barra de ánimo
   ui/dialogue_box.tscn|gd   Prompt, 3 opciones, feedback y resultado del día

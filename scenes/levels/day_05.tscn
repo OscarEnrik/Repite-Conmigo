@@ -1,28 +1,29 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://di50nce8ve40g"]
 
-[ext_resource type="Script" path="res://scenes/levels/day_scene.gd" id="1_day"]
+[ext_resource type="Script" uid="uid://b4q521oq1hq7r" path="res://scenes/levels/day_scene.gd" id="1_day"]
+[ext_resource type="PackedScene" path="res://scenes/levels/day_stage.tscn" id="2_s3rwd"]
 
-[node name="Day05" type="Node2D"]
+[node name="Day05" type="Node2D" unique_id=1211114409]
 script = ExtResource("1_day")
 day_index = 4
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=958105775]
 layer = 0
 
-[node name="Background" type="ColorRect" parent="UI"]
+[node name="Background" type="ColorRect" parent="UI" unique_id=736837578]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.17, 0.14, 0.16, 1)
 
-[node name="IntroCard" type="PanelContainer" parent="UI"]
+[node name="Stage" parent="UI" unique_id=922440632 instance=ExtResource("2_s3rwd")]
+unique_name_in_owner = true
+layout_mode = 3
+
+[node name="IntroCard" type="PanelContainer" parent="UI" unique_id=1647755257]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
@@ -31,28 +32,27 @@ offset_top = 288.0
 offset_right = -72.0
 offset_bottom = 732.0
 grow_horizontal = 2
-grow_vertical = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=2099497405]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=1825438920]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Día 5 · Viernes"
 horizontal_alignment = 1
 
-[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=1936410942]
 unique_name_in_owner = true
 layout_mode = 2
-autowrap_mode = 3
 text = "Se le rompió el celular con la puerta del subte: perdió las fotos de su abuela."
 horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer" unique_id=1905453911]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2

@@ -25,7 +25,7 @@ theme_override_constants/separation = 6
 [node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=693641972]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Día 1/7 · Lunes"
+text = "Día 1/4 · Lunes"
 
 [node name="MoodValueLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=564413617]
 unique_name_in_owner = true

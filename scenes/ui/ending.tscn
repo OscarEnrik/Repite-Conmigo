@@ -47,7 +47,7 @@ horizontal_alignment = 1
 [node name="DaysLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1776947786]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Días superados: 0/7"
+text = "Días superados: 0/4"
 horizontal_alignment = 1
 
 [node name="AverageLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=563979025]
