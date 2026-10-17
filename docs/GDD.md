@@ -17,7 +17,7 @@ acompañó de verdad o si solo miró.
 | Sesión objetivo | 5–10 minutos (una semana completa) |
 | Público | Jugadores de jams narrativas |
 | Tema de la jam | Mujer Game Jam 2026 |
-| Motor | Godot 4.8-dev6 · GL Compatibility · 640×360 |
+| Motor | Godot 4.8-dev6 · GL Compatibility · lienzo 1920×1080 |
 | Estado | Prototipo jugable de principio a fin |
 
 ## Loop principal

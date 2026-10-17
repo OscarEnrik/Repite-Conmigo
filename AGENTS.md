@@ -6,7 +6,9 @@ Forward+ / 3D-only features.
 
 Visual style for this prototype: focus on core mechanics, UI of choices, and state management, leaving complex style variations for later.
 
-Structure and usage recipes live in `README.md`; design/art/credit docs in `docs/`.
+Structure and usage recipes live in `README.md`. **`docs/ARCHITECTURE.md` is the deep reference**:
+how the boot → day → dialogue flow wires together, plus a "I want to change X → edit file:line"
+recipe book. The design (loop, endings, constants) is in `docs/GDD.md`.
 
 **The step-by-step build order for the prototype is `docs/IMPLEMENTATION_PLAN.md` — follow its
 steps in order and don't skip ahead.**
@@ -19,6 +21,9 @@ There is **no test suite** (`tests/` is empty). Running the game is the only rea
 2. `editor_manage op="game_eval"` to inspect or drive the running game.
 3. `logs_read` with `source: "game"` (editor logs are a persistent store that keeps
    stale errors forever — `logs_clear` does not wipe them, so don't read them as current).
+4. `editor_screenshot` with `source: "game"` for anything visual — it returns the game framebuffer
+   and is far more trustworthy than reading rects (`stale_frame: true` only means the game window
+   is unfocused).
 
 `game_eval` executes inside the game process, so it's how you assert gameplay — e.g. inspect
 `/root/Main/DialogueBox` (the choices panel hangs off `Main`, not off the day scene) and read
@@ -30,6 +35,10 @@ the game frozen, and the next call fails with `EVAL_GAME_NOT_READY` — recover 
 `project_manage op="stop"` then `project_run`. Budget it at ~60 fps of
 `await get_tree().process_frame`, so a full 7-day week does **not** fit in one eval: split it
 per ending or per batch of days.
+
+`logs_read source="editor"` permanently reports `GDScript::reload: The signal "…" is declared but
+never explicitly used` once per `event_bus.gd` signal, plus an ANGLE/OpenGL driver warning. All
+pre-existing noise — the **game** log is the one that matters.
 
 ## godot-ai MCP gotchas
 
@@ -66,6 +75,8 @@ is what listens on **8001** (HTTP/MCP, the transport the agent talks to) and **8
 - **`game_manage next_frame` requires `suspend` first**, and a suspend that errors mid-way
   wedges the bridge (game keeps running but appears frozen). Always `resume` after.
 - While the game is playing, scene/script writes fail with `EDITOR_NOT_READY`. Stop it first.
+- After hand-editing a `.tscn`/`.gd` on disk, the editor's open copy goes stale and Godot prompts
+  to reload it: tell the user to accept, or their next save from the editor overwrites the change.
 
 ## Architecture
 
@@ -82,6 +93,23 @@ Six autoloads — order matters:
 
 **Cross-system communication goes through `Events`**, never direct node references — the HUD
 and dialogue menus must survive scene reloads. `Game` tracks the global mood bar and the 7-day progression (Monday to Sunday). `main.tscn` is the persistent host: `LevelHost` (days swap inside it) + `HUD` + `DialogueBox` + `PauseMenu`. Days resolve as `res://scenes/levels/day_%02d.tscn`.
+
+### UI layout
+
+- The canvas is **1920×1080** and **every** UI dimension is the original 640×360 design × **3**
+  (font 54, buttons 600–660 wide, day card `72/288/-72/732`). The big numbers are correct —
+  don't "fix" them.
+- `window/size/window_width/height_override` (1280×720) takes precedence over `size/mode=2`, so the
+  window opens **windowed, not maximized**, while the canvas stays 1920×1080 → the game renders at
+  ×0.667. Rects you measure in `game_eval` are **canvas units, not screen pixels**.
+- **Every font size comes from `resources/themes/main_theme.tres` → `default_font_size` (`54`)**,
+  unless a node sets `theme_override_font_sizes/font_size`. That one line is the lever for "make
+  the text bigger/smaller" across the whole game.
+- Layer order: day `UI` `0` → HUD `1` → `DialogueBox` `5` → `PauseMenu` `10` → `SettingsMenu` `20`.
+- The layout is tight and the day card's height is **deliberately fixed**: HUD `0..262`, card
+  `288..732`, dialogue panel `450..1080`. Card and panel overlap but are never shown together (the
+  card hides on `dialogue_turn_started`). The settings panel already fills ~97 % of the height, so
+  one more row there overflows.
 
 ### Naming traps
 

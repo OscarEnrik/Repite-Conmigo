@@ -24,6 +24,7 @@ Save="*res://scripts/autoload/save_manager.gd"
 Audio="*res://scripts/autoload/audio_manager.gd"
 SceneLoader="*res://scripts/autoload/scene_loader.gd"
 Game="*res://scripts/autoload/game_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
@@ -37,7 +38,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_ai/plugin.cfg")
 
 [gui]
 

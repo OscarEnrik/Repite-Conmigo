@@ -8,7 +8,8 @@ sentido. Lo que salga de su boca mueve la **barra de ánimo**; el promedio de la
 decide cuál de los **3 finales** le toca.
 
 Godot **4.8 (dev `4.8-dev6`)**, 2D, renderer **GL Compatibility** con driver `d3d12`
-(nada de Forward+/3D). Viewport 640×360, ventana 1280×720, stretch `canvas_items` + `expand`.
+(nada de Forward+/3D). Lienzo **1920×1080** (diseño original 640×360 escalado ×3), ventana
+1280×720, stretch `canvas_items` + `expand`.
 
 ## Cómo correrlo
 
