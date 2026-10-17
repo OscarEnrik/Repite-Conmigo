@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "days": [
+	{
+	  "day": 1,
+	  "title": "Lunes",
+	  "start_mood": 50,
+	  "pass_threshold": 50,
+	  "richard_intro": "El colectivo se incendió. Richard llegó tarde y con olor a humo.",
+	  "turns": [
+		{
+		  "prompt": "Richard vuelca el café sobre su camisa blanca.",
+		  "options": [
+			{ "text": "«¿Eso es café o una declaración de guerra?»", "kind": "choke", "mood": -12 },
+			{ "text": "«Tranquilo, a todos nos pasa.»", "kind": "motivate", "mood": 10 },
+			{ "text": "«...psssst.»", "kind": "sound", "mood": -2 }
+		  ]
+		},
+		{
+		  "prompt": "Su jefe le grita frente a todo el equipo.",
+		  "options": [
+			{ "text": "«¿Le pagás vos el sueldo o le ladrás gratis?»", "kind": "choke", "mood": -11 },
+			{ "text": "«Respirá. Es un mal momento, no una mala vida.»", "kind": "motivate", "mood": 9 },
+			{ "text": "(palmaditas en la espalda)", "kind": "sound", "mood": 1 }
+		  ]
+		}
+	  ]
+	},
+	{
+	  "day": 2,
+	  "title": "Martes",
+	  "start_mood": 50,
+	  "pass_threshold": 52,
+	  "richard_intro": "Le llegó una multa por algo que no hizo. Y se le cayó el café al ir a pagarla.",
+	  "turns": [
+		{
+		  "prompt": "Richard espera dos horas en una fila que no era la correcta.",
+		  "options": [
+			{ "text": "«¿Sabías que hay filas que avanzan?»", "kind": "choke", "mood": -10 },
+			{ "text": "«Ya fue. La fila era mala, no vos.»", "kind": "motivate", "mood": 8 },
+			{ "text": "«...mmm.»", "kind": "sound", "mood": -1 }
+		  ]
+		},
+		{
+		  "prompt": "Le roban la billetera en el banco. Perdió el DNI.",
+		  "options": [
+			{ "text": "«La próxima atala con una cadena.»", "kind": "choke", "mood": -13 },
+			{ "text": "«Es un trámite, no un juicio. Se resuelve.»", "kind": "motivate", "mood": 9 },
+			{ "text": "(suspiro largo)", "kind": "sound", "mood": -3 }
+		  ]
+		}
+	  ]
+	},
+	{
+	  "day": 3,
+	  "title": "Miércoles",
+	  "start_mood": 50,
+	  "pass_threshold": 54,
+	  "richard_intro": "Su jefe le gritó por un mail que no mandó él.",
+	  "turns": [
+		{
+		  "prompt": "Richard se queda mudo en la reunión, con el mail abierto en la pantalla.",
+		  "options": [
+			{ "text": "«¿No te enseñaron a reenviar?»", "kind": "choke", "mood": -12 },
+			{ "text": "«El que grita es el que no tiene razón.»", "kind": "motivate", "mood": 9 },
+			{ "text": "«...ajá.»", "kind": "sound", "mood": 0 }
+		  ]
+		},
+		{
+		  "prompt": "Nadie del equipo lo defendió.",
+		  "options": [
+			{ "text": "«Y encima cobrás el sueldo, ¿no?»", "kind": "choke", "mood": -14 },
+			{ "text": "«Estabas solo en ese cuarto, pero el que se lo banca sos vos.»", "kind": "motivate", "mood": 8 },
+			{ "text": "(pssst) tranquilo.", "kind": "sound", "mood": 2 }
+		  ]
+		}
+	  ]
+	},
+	{
+	  "day": 4,
+	  "title": "Jueves",
+	  "start_mood": 50,
+	  "pass_threshold": 56,
+	  "richard_intro": "Le robaron la bici atada con tres candados. Llovía.",
+	  "turns": [
+		{
+		  "prompt": "Richard vuelve caminando bajo el agua, empapado hasta los huesos.",
+		  "options": [
+			{ "text": "«¿Tres candados? Un optimista irremediable.»", "kind": "choke", "mood": -11 },
+			{ "text": "«Es una bici. Vos seguís entero.»", "kind": "motivate", "mood": 9 },
+			{ "text": "(pisotón en un charco)", "kind": "sound", "mood": -1 }
+		  ]
+		},
+		{
+		  "prompt": "Llega a casa y no hay agua caliente.",
+		  "options": [
+			{ "text": "«Se te acabó la suerte, eh.»", "kind": "choke", "mood": -12 },
+			{ "text": "«Mañana el agua caliente te la merecés vos.»", "kind": "motivate", "mood": 8 },
+			{ "text": "«...bssst.»", "kind": "sound", "mood": -2 }
+		  ]
+		}
+	  ]
+	},
+	{
+	  "day": 5,
+	  "title": "Viernes",
+	  "start_mood": 50,
+	  "pass_threshold": 58,
+	  "richard_intro": "Se le rompió el celular con la puerta del subte: perdió las fotos de su abuela.",
+	  "turns": [
+		{
+		  "prompt": "Richard desliza una pantalla negra una y otra vez.",
+		  "options": [
+			{ "text": "«Son fotos. Se bajan de la nube.»", "kind": "choke", "mood": -13 },
+			{ "text": "«No perdiste a tu abuela. La tenés en el pecho.»", "kind": "motivate", "mood": 11 },
+			{ "text": "(chasquido de lengua)", "kind": "sound", "mood": -2 }
+		  ]
+		},
+		{
+		  "prompt": "En el fondo del cajón encuentra la ropa de ella. Le queda enorme.",
+		  "options": [
+			{ "text": "«Perdiste fotos y ropa. Récord.»", "kind": "choke", "mood": -12 },
+			{ "text": "«Guardala. Un día te va a hacer bien mirarla.»", "kind": "motivate", "mood": 9 },
+			{ "text": "«...mhhhh.»", "kind": "sound", "mood": 1 }
+		  ]
+		}
+	  ]
+	},
+	{
+	  "day": 6,
+	  "title": "Sábado",
+	  "start_mood": 50,
+	  "pass_threshold": 60,
+	  "richard_intro": "Su mejor amigo le canceló el plan por tercera vez. La pizza llegó fría y sin queso.",
+	  "turns": [
+		{
+		  "prompt": "Richard come pizza fría mirando el chat donde el amigo ni contesta.",
+		  "options": [
+			{ "text": "«Capaz el problema sos vos, eh.»", "kind": "choke", "mood": -14 },
+			{ "text": "«Un amigo que cancela tres veces no es tu medida.»", "kind": "motivate", "mood": 9 },
+			{ "text": "(ruido de masticar, incómodo)", "kind": "sound", "mood": 1 }
+		  ]
+		},
+		{
+		  "prompt": "Le escribe al amigo y no recibe respuesta en toda la noche.",
+		  "options": [
+			{ "text": "«Escribile cuatro veces más, total.»", "kind": "choke", "mood": -12 },
+			{ "text": "«Cerrá el chat. Mañana te ibas a sentir igual.»", "kind": "motivate", "mood": 8 },
+			{ "text": "«...psssst...»", "kind": "sound", "mood": -3 }
+		  ]
+		}
+	  ]
+	},
+	{
+	  "day": 7,
+	  "title": "Domingo",
+	  "start_mood": 50,
+	  "pass_threshold": 62,
+	  "richard_intro": "Se despertó a las 4 AM con la sensación de que el lunes ya empezó.",
+	  "turns": [
+		{
+		  "prompt": "Richard mira el techo. Sabe que en seis horas vuelve a empezar todo.",
+		  "options": [
+			{ "text": "«¿Esto es un problema o tu personalidad?»", "kind": "choke", "mood": -12 },
+			{ "text": "«Hoy es domingo. Todavía no arrancó nada.»", "kind": "motivate", "mood": 10 },
+			{ "text": "«...sshhh.»", "kind": "sound", "mood": 0 }
+		  ]
+		},
+		{
+		  "prompt": "Está a punto de mandar ese mensaje al jefe. El que no se puede mandar.",
+		  "options": [
+			{ "text": "«Mandalo. Total, ya estás abajo.»", "kind": "choke", "mood": -13 },
+			{ "text": "«Guardá el teléfono y tomá agua. Eso lo arreglás el lunes.»", "kind": "motivate", "mood": 7 },
+			{ "text": "(bostezo ruidoso)", "kind": "sound", "mood": -1 }
+		  ]
+		}
+	  ]
+	}
+  ]
+}

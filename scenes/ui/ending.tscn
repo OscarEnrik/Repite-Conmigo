@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://k33u23ahl748"]
+
+[ext_resource type="Script" uid="uid://dbqchs3wftag6" path="res://scenes/ui/ending.gd" id="1_ending"]
+
+[node name="Ending" type="Control" unique_id=30309401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ending")
+
+[node name="Background" type="ColorRect" parent="." unique_id=378946453]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0980392, 0.0588235, 0.0980392, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=676669890]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 667.36365
+offset_top = 279.0
+offset_right = -667.36365
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1087462803]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1345544707]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Fin de la semana"
+horizontal_alignment = 1
+
+[node name="DaysLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1776947786]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Días superados: 0/7"
+horizontal_alignment = 1
+
+[node name="AverageLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=563979025]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ánimo promedio: 50/100"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=897540517]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=121017631]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Jugar de nuevo"
+
+[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2132585641]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Volver al menú"

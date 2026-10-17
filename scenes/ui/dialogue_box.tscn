@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cg7ehi71evdjs"]
+
+[ext_resource type="Script" uid="uid://cybo1am57vql8" path="res://scenes/ui/dialogue_box.gd" id="1_dialogue"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=1410478299]
+layer = 5
+script = ExtResource("1_dialogue")
+
+[node name="DialoguePanel" type="PanelContainer" parent="." unique_id=92784014]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 649.0
+offset_top = -390.0
+offset_right = -649.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel" unique_id=219340943]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="PromptLabel" type="Label" parent="DialoguePanel/VBoxContainer" unique_id=565453207]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Prompt del turno"
+autowrap_mode = 3
+
+[node name="OptionsContainer" type="VBoxContainer" parent="DialoguePanel/VBoxContainer" unique_id=1570036763]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Option1" type="Button" parent="DialoguePanel/VBoxContainer/OptionsContainer" unique_id=1601102786]
+layout_mode = 2
+text = "Opción 1"
+
+[node name="Option2" type="Button" parent="DialoguePanel/VBoxContainer/OptionsContainer" unique_id=425900359]
+layout_mode = 2
+text = "Opción 2"
+
+[node name="Option3" type="Button" parent="DialoguePanel/VBoxContainer/OptionsContainer" unique_id=914253739]
+layout_mode = 2
+text = "Opción 3"
+
+[node name="FeedbackLabel" type="Label" parent="DialoguePanel/VBoxContainer" unique_id=1490530745]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="DayResultPanel" type="PanelContainer" parent="." unique_id=2147370933]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = 216.0
+offset_right = -180.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DayResultPanel" unique_id=1134070003]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="ResultLabel" type="Label" parent="DayResultPanel/VBoxContainer" unique_id=528545790]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "Día superado"
+horizontal_alignment = 1
+
+[node name="ResultButton" type="Button" parent="DayResultPanel/VBoxContainer" unique_id=952655474]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Seguir"

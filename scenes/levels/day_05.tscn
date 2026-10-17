@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/day_scene.gd" id="1_day"]
+
+[node name="Day05" type="Node2D"]
+script = ExtResource("1_day")
+day_index = 4
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Background" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.17, 0.14, 0.16, 1)
+
+[node name="IntroCard" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 72.0
+offset_top = 288.0
+offset_right = -72.0
+offset_bottom = 732.0
+grow_horizontal = 2
+grow_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Día 5 · Viernes"
+horizontal_alignment = 1
+
+[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+text = "Se le rompió el celular con la puerta del subte: perdió las fotos de su abuela."
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continuar"

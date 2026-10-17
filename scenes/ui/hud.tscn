@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cdkng22off1wj"]
+
+[ext_resource type="Script" uid="uid://bosl6ej8xegb7" path="res://scenes/ui/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer" unique_id=795954845]
+script = ExtResource("1_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=289836495]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1365.0
+offset_bottom = 224.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=314079657]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="DayLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=693641972]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Día 1/7 · Lunes"
+
+[node name="MoodValueLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=564413617]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ánimo: 50/100"
+
+[node name="MoodBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1770822071]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+mouse_filter = 2
+value = 50.0
+show_percentage = false
