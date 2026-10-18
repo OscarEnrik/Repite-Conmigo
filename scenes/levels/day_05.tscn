@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4q521oq1hq7r" path="res://scenes/levels/day_scene.gd" id="1_day"]
 [ext_resource type="PackedScene" path="res://scenes/levels/day_stage.tscn" id="2_s3rwd"]
+[ext_resource type="Texture2D" uid="uid://hnj4sbknmdcv" path="res://assets/art/sprites/Pixelart/Sprites/Loretta.png" id="3_loretta"]
 
 [node name="Day05" type="Node2D" unique_id=1211114409]
 script = ExtResource("1_day")
@@ -32,6 +33,24 @@ offset_top = 288.0
 offset_right = -72.0
 offset_bottom = 732.0
 grow_horizontal = 2
+
+[node name="LorettaAnchor" type="Control" parent="UI/IntroCard" unique_id=184920505]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LorettaPortrait" type="TextureRect" parent="UI/IntroCard/LorettaAnchor" unique_id=984719605]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 80.0
+offset_top = -240.0
+offset_right = 440.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("3_loretta")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=2099497405]
 layout_mode = 2

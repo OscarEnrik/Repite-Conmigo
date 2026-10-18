@@ -4,9 +4,9 @@ extends CanvasLayer
 ## process_mode = ALWAYS es obligatorio: este menú tiene que responder mientras
 ## get_tree().paused es true. Los hijos heredan el modo, no hay que tocarlos.
 
-@onready var _resume_button: Button = %ResumeButton
-@onready var _restart_button: Button = %RestartButton
-@onready var _menu_button: Button = %MenuButton
+@onready var _resume_button: BaseButton = %ResumeButton
+@onready var _restart_button: BaseButton = %RestartButton
+@onready var _menu_button: BaseButton = %MenuButton
 
 
 func _ready() -> void:

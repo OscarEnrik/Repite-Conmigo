@@ -166,7 +166,8 @@ func start_day(index: int) -> void:
 
 	current_day = index
 	current_turn = 0
-	mood = clampi(int(data.get("start_mood", MOOD_START)), MOOD_MIN, MOOD_MAX)
+	if index == 0 and history.is_empty():
+		mood = clampi(int(data.get("start_mood", MOOD_START)), MOOD_MIN, MOOD_MAX)
 	state = State.INTRO
 	Events.day_started.emit(current_day, String(data.get("title", "")))
 

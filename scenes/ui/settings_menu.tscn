@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bpsvqrt3uu8es"]
 
-[ext_resource type="Script" path="res://scenes/ui/settings_menu.gd" id="1_settings"]
+[ext_resource type="Script" uid="uid://cvq7c863qm54h" path="res://scenes/ui/settings_menu.gd" id="1_settings"]
 
-[node name="SettingsMenu" type="CanvasLayer"]
+[node name="SettingsMenu" type="CanvasLayer" unique_id=1530700048]
 layer = 20
 script = ExtResource("1_settings")
 
-[node name="Dimmer" type="ColorRect" parent="."]
+[node name="Dimmer" type="ColorRect" parent="." unique_id=1381893433]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,38 +14,38 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.705882)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=62179662]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1857973286]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=259532169]
 layout_mode = 2
 theme_override_constants/margin_left = 84
 theme_override_constants/margin_top = 66
 theme_override_constants/margin_right = 84
 theme_override_constants/margin_bottom = 66
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1356001074]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1064345659]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "Opciones"
 horizontal_alignment = 1
 
-[node name="MasterLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MasterLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1001970933]
 layout_mode = 2
 text = "Volumen general"
 
-[node name="MasterSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MasterSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=751349991]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
@@ -53,11 +53,11 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="MusicLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=988208237]
 layout_mode = 2
 text = "Música"
 
-[node name="MusicSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=369815287]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
@@ -65,11 +65,11 @@ max_value = 1.0
 step = 0.05
 value = 0.7
 
-[node name="SfxLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SfxLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2048932170]
 layout_mode = 2
 text = "Efectos"
 
-[node name="SfxSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SfxSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=850560594]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
@@ -77,24 +77,24 @@ max_value = 1.0
 step = 0.05
 value = 0.9
 
-[node name="FullscreenCheck" type="CheckButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="FullscreenCheck" type="CheckButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1240208256]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Pantalla completa"
 
-[node name="ValuesLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ValuesLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=909257745]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
 text = "Master 80%   Música 70%   SFX 90%"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1788398643]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=914971114]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2

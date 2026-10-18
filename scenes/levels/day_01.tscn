@@ -1,7 +1,29 @@
 [gd_scene format=3 uid="uid://boispdxywmf0g"]
 
 [ext_resource type="Script" uid="uid://b4q521oq1hq7r" path="res://scenes/levels/day_scene.gd" id="1_day"]
-[ext_resource type="PackedScene" path="res://scenes/levels/day_stage.tscn" id="2_n58a3"]
+[ext_resource type="PackedScene" uid="uid://o78nc4eai0ju" path="res://scenes/levels/day_stage.tscn" id="2_n58a3"]
+[ext_resource type="Texture2D" uid="uid://bjqinrl8xg8ij" path="res://assets/art/sprites/Pixelart/Sprites/fondo Loretta (1).png" id="2_yf64c"]
+[ext_resource type="Texture2D" uid="uid://hnj4sbknmdcv" path="res://assets/art/sprites/Pixelart/Sprites/Loretta.png" id="4_loretta"]
+[ext_resource type="Texture2D" uid="uid://bis7g82ikhi05" path="res://assets/art/ui/Burbujas de dialogo/Nube grande.png" id="4_uf3c8"]
+[ext_resource type="Texture2D" uid="uid://c56s0kh15lio" path="res://assets/art/ui/Botone/Nueva partida-export.png" id="6_q2fik"]
+[ext_resource type="Texture2D" uid="uid://dxxoreuidvvg2" path="res://assets/art/ui/Botone/Nueva partida Press-sheet.png" id="7_kp4jr"]
+[ext_resource type="Texture2D" uid="uid://c4ee34wu6qmqv" path="res://assets/art/ui/Botone/Nueva partida hover-sheet.png" id="8_3oydn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2j7i"]
+content_margin_left = 45.0
+content_margin_top = 10.0
+content_margin_right = 45.0
+texture = ExtResource("4_uf3c8")
+expand_margin_bottom = 65.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mjmi"]
+texture = ExtResource("6_q2fik")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_daetb"]
+texture = ExtResource("7_kp4jr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h44io"]
+texture = ExtResource("8_3oydn")
 
 [node name="Day01" type="Node2D" unique_id=1081574383]
 script = ExtResource("1_day")
@@ -9,28 +31,55 @@ script = ExtResource("1_day")
 [node name="UI" type="CanvasLayer" parent="." unique_id=512852423]
 layer = 0
 
-[node name="Background" type="ColorRect" parent="UI" unique_id=284424801]
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=818361150]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0.13, 0.15, 0.2, 1)
+texture = ExtResource("2_yf64c")
 
 [node name="Stage" parent="UI" unique_id=1392790828 instance=ExtResource("2_n58a3")]
 unique_name_in_owner = true
-layout_mode = 3
 
 [node name="IntroCard" type="PanelContainer" parent="UI" unique_id=596610113]
 unique_name_in_owner = true
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = 72.0
-offset_top = 288.0
-offset_right = -72.0
-offset_bottom = 732.0
+anchor_bottom = 1.0
+offset_left = 141.0
+offset_top = -341.0
+offset_right = -141.0
 grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_y2j7i")
+
+[node name="LorettaAnchor" type="Control" parent="UI/IntroCard" unique_id=1849201948]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Background2" type="ColorRect" parent="UI/IntroCard/LorettaAnchor" unique_id=1625594137]
+layout_mode = 0
+offset_left = -330.0
+offset_top = -850.0
+offset_right = 1879.0
+offset_bottom = 341.0
+color = Color(0.14282666, 0.16, 0.086399995, 0.78039217)
+
+[node name="LorettaPortrait" type="TextureRect" parent="UI/IntroCard/LorettaAnchor" unique_id=984719283]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = -528.0
+offset_right = 530.0
+offset_bottom = -2.0
+mouse_filter = 2
+texture = ExtResource("4_loretta")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=1142624124]
 layout_mode = 2
@@ -56,4 +105,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_4mjmi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_daetb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_h44io")
 text = "Continuar"

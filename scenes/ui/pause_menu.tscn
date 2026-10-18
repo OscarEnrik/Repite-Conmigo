@@ -1,20 +1,34 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://r36sfuqq347c"]
 
-[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_pause"]
+[ext_resource type="Script" uid="uid://y3h465xyj12m" path="res://scenes/ui/pause_menu.gd" id="1_pause"]
+[ext_resource type="Texture2D" uid="uid://bd2b2adk025iw" path="res://assets/art/ui/Menú de pausa/Pausa base.png" id="2_8fwbo"]
+[ext_resource type="Texture2D" uid="uid://b1gi3vutkhof7" path="res://assets/art/ui/Menú de pausa/Pausa.png" id="3_2rlsb"]
+[ext_resource type="Texture2D" uid="uid://iyrxxjex3i8v" path="res://assets/art/ui/Menú de pausa/Reanudar.png" id="4_coo1x"]
+[ext_resource type="Texture2D" uid="uid://re5flmr5ycqj" path="res://assets/art/ui/Menú de pausa/Reanudar press.png" id="5_2jkta"]
+[ext_resource type="Texture2D" uid="uid://h0thvyl5013f" path="res://assets/art/ui/hover/Reanudar hover.png" id="6_coo1x"]
+[ext_resource type="Texture2D" uid="uid://bq3nsmx8ot1dc" path="res://assets/art/ui/Menú de pausa/Salir.png" id="6_ht4ye"]
+[ext_resource type="Texture2D" uid="uid://rsmgr6drh6kw" path="res://assets/art/ui/Menú de pausa/Salir Press.png" id="7_7yca1"]
+[ext_resource type="Texture2D" uid="uid://cirftp280vqyr" path="res://assets/art/ui/hover/Salir hover.png" id="9_2jkta"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fodqe"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=255667624]
 layer = 10
 script = ExtResource("1_pause")
 
-[node name="Dimmer" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1120960530]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -117.333374
+offset_top = -66.0
+offset_right = 117.333374
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.627451)
+texture = ExtResource("2_8fwbo")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=187330746]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,40 +36,54 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1032836178]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fodqe")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=79946995]
 layout_mode = 2
 theme_override_constants/margin_left = 72
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 72
 theme_override_constants/margin_bottom = 60
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1090158514]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1397513918]
+visible = false
+custom_minimum_size = Vector2(100, 130)
 layout_mode = 2
-theme_override_font_sizes/font_size = 72
-text = "Pausa"
-horizontal_alignment = 1
+texture = ExtResource("3_2rlsb")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=29070430]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 0)
+custom_minimum_size = Vector2(900, 150)
 layout_mode = 2
-text = "Continuar"
+texture_normal = ExtResource("4_coo1x")
+texture_pressed = ExtResource("5_2jkta")
+texture_hover = ExtResource("6_coo1x")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="RestartButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RestartButton" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1641925737]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 0)
+visible = false
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-text = "Reiniciar"
+texture_normal = ExtResource("4_coo1x")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="MenuButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MenuButton" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1474237858]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 0)
+custom_minimum_size = Vector2(1000, 150)
 layout_mode = 2
-text = "Volver al menú"
+texture_normal = ExtResource("6_ht4ye")
+texture_pressed = ExtResource("7_7yca1")
+texture_hover = ExtResource("9_2jkta")
+ignore_texture_size = true
+stretch_mode = 5

@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://3ew5p7x4mnri"]
 
 [ext_resource type="Script" uid="uid://dr4ag3vmqqd4v" path="res://scenes/ui/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://caoqbej0tr25c" path="res://assets/art/backgrounds/Inicio de pantalla/48 sin título_20261017205640.png" id="2_1g8jr"]
+[ext_resource type="Texture2D" uid="uid://bytpffi2l4d40" path="res://assets/art/backgrounds/Inicio de pantalla/d241e411ab193b3c96903c06fdb27366.jpg" id="2_8g5eo"]
+[ext_resource type="Texture2D" uid="uid://cbpwrfvh8shxj" path="res://assets/art/ui/Menú de inicio/Nueva partida Press.png" id="3_m1kxf"]
+[ext_resource type="Texture2D" uid="uid://dkle8kronpvdf" path="res://assets/art/backgrounds/Inicio de pantalla/Logo_20261018_080741_0000.png" id="4_7suek"]
+[ext_resource type="Texture2D" uid="uid://dgcrrkxagsm21" path="res://assets/art/ui/Menú de inicio/Nueva partida.png" id="5_otr3d"]
+[ext_resource type="Texture2D" uid="uid://bf0xoijkl6hp6" path="res://assets/art/ui/Menú de inicio/Continuar.png" id="7_8ekit"]
+[ext_resource type="Texture2D" uid="uid://b3apwbwdfh7cg" path="res://assets/art/ui/hover/Nueva partida hover.png" id="7_n4uci"]
+[ext_resource type="Texture2D" uid="uid://b6smyueupcllj" path="res://assets/art/ui/Menú de inicio/Continuar Press.png" id="8_n4uci"]
+[ext_resource type="Texture2D" uid="uid://bxdkyuxs67vgq" path="res://assets/art/ui/Menú de inicio/Creditos.png" id="9_877pj"]
+[ext_resource type="Texture2D" uid="uid://bdsyq85pmoupg" path="res://assets/art/ui/hover/Continuar hover.png" id="10_877pj"]
+[ext_resource type="Texture2D" uid="uid://cy8u8btgcdify" path="res://assets/art/ui/Menú de inicio/Creditos press.png" id="10_ayp64"]
+[ext_resource type="Texture2D" uid="uid://doa3rnrib1vro" path="res://assets/art/ui/hover/Creditos hover.png" id="13_ayp64"]
 
 [node name="MainMenu" type="Control" unique_id=288679776]
 layout_mode = 3
@@ -11,6 +23,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=371989530]
+layout_mode = 0
+offset_left = -131.55566
+offset_top = -74.0
+offset_right = 2051.5557
+offset_bottom = 1154.0
+texture = ExtResource("2_8g5eo")
+expand_mode = 1
+
 [node name="Background" type="ColorRect" parent="." unique_id=2106775683]
 layout_mode = 1
 anchors_preset = 15
@@ -19,13 +40,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.0980392, 0.0784314, 0.137255, 1)
+color = Color(0.34308475, 0.30691162, 0.20743552, 0.3254902)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1979153555]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_1g8jr")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1238620311]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1012.0
+offset_right = 158.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -33,42 +63,57 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=314983478]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=2058320829]
+custom_minimum_size = Vector2(1000, 300)
 layout_mode = 2
-theme_override_font_sizes/font_size = 96
-text = "Repite Conmigo"
-horizontal_alignment = 1
-
-[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1167126046]
-layout_mode = 2
-text = "Cuatro días para levantarle el ánimo."
-horizontal_alignment = 1
+texture = ExtResource("4_7suek")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=213401324]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1324278154]
+[node name="NewGameButton" type="TextureButton" parent="CenterContainer/VBoxContainer" unique_id=122139362]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(660, 0)
+custom_minimum_size = Vector2(500, 84)
 layout_mode = 2
-text = "Nueva partida"
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_otr3d")
+texture_pressed = ExtResource("3_m1kxf")
+texture_hover = ExtResource("7_n4uci")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=966880554]
+[node name="ContinueButton" type="TextureButton" parent="CenterContainer/VBoxContainer" unique_id=2021112987]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(660, 0)
+custom_minimum_size = Vector2(500, 84)
 layout_mode = 2
-text = "Continuar"
+size_flags_horizontal = 4
+texture_normal = ExtResource("7_8ekit")
+texture_pressed = ExtResource("8_n4uci")
+texture_hover = ExtResource("10_877pj")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=195647709]
+[node name="SettingsButton" type="TextureButton" parent="CenterContainer/VBoxContainer" unique_id=594245713]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(660, 0)
+visible = false
+custom_minimum_size = Vector2(500, 84)
 layout_mode = 2
-text = "Opciones"
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_m1kxf")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1506771941]
+[node name="CreditsButton" type="TextureButton" parent="CenterContainer/VBoxContainer" unique_id=2114186887]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(660, 0)
+custom_minimum_size = Vector2(500, 84)
 layout_mode = 2
-text = "Salir"
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_877pj")
+texture_pressed = ExtResource("10_ayp64")
+texture_hover = ExtResource("13_ayp64")
+ignore_texture_size = true
+stretch_mode = 5

@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://cv8xoidwvscdt"]
+
+[ext_resource type="Script" uid="uid://c7vnls4m51ls0" path="res://scenes/ui/animatic_player.gd" id="1_animatic"]
+[ext_resource type="Texture2D" uid="uid://bytpffi2l4d40" path="res://assets/art/backgrounds/Inicio de pantalla/d241e411ab193b3c96903c06fdb27366.jpg" id="2_wmy6t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_877pj"]
+bg_color = Color(0.83, 0.81838, 0.5976, 0.19215687)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="AnimaticPlayer" type="CanvasLayer" unique_id=1301448515]
+layer = 8
+script = ExtResource("1_animatic")
+
+[node name="ClickCatcher" type="Control" parent="." unique_id=35892934]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="TextureRect2" type="TextureRect" parent="ClickCatcher" unique_id=989538207]
+layout_mode = 0
+offset_left = -119.111084
+offset_top = -67.0
+offset_right = 2039.1111
+offset_bottom = 1147.0
+texture = ExtResource("2_wmy6t")
+expand_mode = 1
+
+[node name="Background" type="ColorRect" parent="ClickCatcher" unique_id=89578868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.44446
+offset_top = -61.0
+offset_right = 108.44446
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34308475, 0.30691162, 0.20743552, 0.3254902)
+
+[node name="SlideTexture" type="TextureRect" parent="ClickCatcher" unique_id=1893392908]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FadeTexture" type="TextureRect" parent="ClickCatcher" unique_id=2058493021]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleContainer" type="VBoxContainer" parent="ClickCatcher" unique_id=1481928374]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -140.0
+offset_right = 500.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="DayTitleLabel" type="Label" parent="ClickCatcher/TitleContainer" unique_id=-1152108114]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "DÍA 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DaySubtitleLabel" type="Label" parent="ClickCatcher/TitleContainer" unique_id=-1576685468]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Lunes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintPanel" type="PanelContainer" parent="ClickCatcher" unique_id=1606923592]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -262.0
+offset_top = -108.0
+offset_right = 262.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_877pj")
+
+[node name="StepHintLabel" type="Label" parent="ClickCatcher/HintPanel" unique_id=747432296]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 36
+text = "Clic para continuar"
+horizontal_alignment = 1
+vertical_alignment = 1

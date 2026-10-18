@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjftanxjmbnba"
+path="res://.godot/imported/Pasos sobre madera.wav-b70a47947eda092334d7d51796aeeb9a.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Sonidos Generales/SFX Pasos Richard/Pasos sobre madera.wav"
+dest_files=["res://.godot/imported/Pasos sobre madera.wav-b70a47947eda092334d7d51796aeeb9a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

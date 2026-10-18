@@ -1,7 +1,29 @@
 [gd_scene format=3 uid="uid://cbwu7fx0avp8o"]
 
 [ext_resource type="Script" uid="uid://b4q521oq1hq7r" path="res://scenes/levels/day_scene.gd" id="1_day"]
-[ext_resource type="PackedScene" path="res://scenes/levels/day_stage.tscn" id="2_mls2g"]
+[ext_resource type="Texture2D" uid="uid://bjqinrl8xg8ij" path="res://assets/art/sprites/Pixelart/Sprites/fondo Loretta (1).png" id="2_1v5wl"]
+[ext_resource type="PackedScene" uid="uid://o78nc4eai0ju" path="res://scenes/levels/day_stage.tscn" id="2_mls2g"]
+[ext_resource type="Texture2D" uid="uid://bis7g82ikhi05" path="res://assets/art/ui/Burbujas de dialogo/Nube grande.png" id="4_kmys1"]
+[ext_resource type="Texture2D" uid="uid://hnj4sbknmdcv" path="res://assets/art/sprites/Pixelart/Sprites/Loretta.png" id="4_loretta"]
+[ext_resource type="Texture2D" uid="uid://c56s0kh15lio" path="res://assets/art/ui/Botone/Nueva partida-export.png" id="6_y32vk"]
+[ext_resource type="Texture2D" uid="uid://dxxoreuidvvg2" path="res://assets/art/ui/Botone/Nueva partida Press-sheet.png" id="7_3ecsp"]
+[ext_resource type="Texture2D" uid="uid://c4ee34wu6qmqv" path="res://assets/art/ui/Botone/Nueva partida hover-sheet.png" id="8_ggsnh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2j7i"]
+content_margin_left = 45.0
+content_margin_top = 10.0
+content_margin_right = 45.0
+texture = ExtResource("4_kmys1")
+expand_margin_bottom = 65.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mjmi"]
+texture = ExtResource("6_y32vk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_daetb"]
+texture = ExtResource("7_3ecsp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h44io"]
+texture = ExtResource("8_ggsnh")
 
 [node name="Day02" type="Node2D" unique_id=46309359]
 script = ExtResource("1_day")
@@ -10,51 +32,81 @@ day_index = 1
 [node name="UI" type="CanvasLayer" parent="." unique_id=125327831]
 layer = 0
 
-[node name="Background" type="ColorRect" parent="UI" unique_id=810866606]
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1547608707]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0.14, 0.15, 0.19, 1)
+texture = ExtResource("2_1v5wl")
 
 [node name="Stage" parent="UI" unique_id=1214075651 instance=ExtResource("2_mls2g")]
 unique_name_in_owner = true
-layout_mode = 3
 
-[node name="IntroCard" type="PanelContainer" parent="UI" unique_id=1353141846]
+[node name="IntroCard" type="PanelContainer" parent="UI" unique_id=1126166688]
 unique_name_in_owner = true
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = 72.0
-offset_top = 288.0
-offset_right = -72.0
-offset_bottom = 732.0
+anchor_bottom = 1.0
+offset_left = 141.0
+offset_top = -341.0
+offset_right = -141.0
 grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_y2j7i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=1139411189]
+[node name="LorettaAnchor" type="Control" parent="UI/IntroCard" unique_id=22934749]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Background2" type="ColorRect" parent="UI/IntroCard/LorettaAnchor" unique_id=737612790]
+layout_mode = 0
+offset_left = -409.0
+offset_top = -810.0
+offset_right = 1819.0
+offset_bottom = 341.0
+color = Color(0.14282666, 0.16, 0.086399995, 0.78039217)
+
+[node name="LorettaPortrait" type="TextureRect" parent="UI/IntroCard/LorettaAnchor" unique_id=895627601]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = -528.0
+offset_right = 530.0
+offset_bottom = -2.0
+mouse_filter = 2
+texture = ExtResource("4_loretta")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/IntroCard" unique_id=798994309]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=1965757387]
+[node name="DayTitleLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=1992313812]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "Día 2 · Martes"
+text = "Día 1 · Lunes"
 horizontal_alignment = 1
 
-[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=976578746]
+[node name="IntroLabel" type="Label" parent="UI/IntroCard/VBoxContainer" unique_id=1878003799]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Le llegó una multa por algo que no hizo. Y se le cayó el café al ir a pagarla."
+text = "El colectivo se incendió. Richard llegó tarde y con olor a humo."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer" unique_id=1704392985]
+[node name="ContinueButton" type="Button" parent="UI/IntroCard/VBoxContainer" unique_id=86444538]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_4mjmi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_daetb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_h44io")
 text = "Continuar"

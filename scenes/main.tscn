@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="3_pause"]
 [ext_resource type="PackedScene" path="res://scenes/ui/dialogue_box.tscn" id="4_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/animatic_player.tscn" id="5_animatic"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
@@ -15,6 +16,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="DialogueBox" parent="." instance=ExtResource("4_dialogue")]
+unique_name_in_owner = true
+
+[node name="AnimaticPlayer" parent="." instance=ExtResource("5_animatic")]
 unique_name_in_owner = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_pause")]
